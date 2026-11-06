@@ -1,0 +1,100 @@
+{
+  "markov74_anchor": {
+    "training_options": {
+      "out": "runs/markov74_anchor",
+      "epochs": 140,
+      "width": 256,
+      "separable": true,
+      "anchor": true,
+      "position_response": 1.0,
+      "seed": 12
+    },
+    "checkpoint_used": null
+  },
+  "near_invariant": {
+    "training_options": {
+      "out": "runs/near_invariant",
+      "epochs": 160,
+      "width": 256,
+      "separable": true,
+      "anchor": true,
+      "position_response": 1.0,
+      "seed": 12,
+      "extra_data": [
+        "data/near_rollouts"
+      ],
+      "gravity_checkpoint": "runs/gravity_near/best.pt",
+      "invariant": true,
+      "regular_weight": 2.0
+    },
+    "checkpoint_used": "last.pt"
+  },
+  "high_invariant384": {
+    "training_options": {
+      "out": "runs/high_invariant384",
+      "epochs": 140,
+      "width": 384,
+      "separable": true,
+      "anchor": true,
+      "position_response": 1.0,
+      "seed": 12,
+      "extra_data": [
+        "data/near_rollouts",
+        "data/high_rollouts"
+      ],
+      "gravity_checkpoint": "runs/gravity_high/best.pt",
+      "invariant": true,
+      "regular_weight": 1.5,
+      "init": null
+    },
+    "checkpoint_used": "best.pt"
+  },
+  "far_transfer": {
+    "training_options": {
+      "out": "runs/far_transfer",
+      "epochs": 80,
+      "width": 384,
+      "separable": true,
+      "anchor": true,
+      "position_response": 1.0,
+      "seed": 12,
+      "extra_data": [
+        "data/near_rollouts",
+        "data/high_rollouts",
+        "data/far_rollouts"
+      ],
+      "gravity_checkpoint": "runs/gravity_verified_high/best.pt",
+      "invariant": true,
+      "regular_weight": 1.5,
+      "init": "runs/high_invariant384/best.pt"
+    },
+    "checkpoint_used": "best.pt"
+  },
+  "far_corrected": {
+    "training_options": {
+      "out": "runs/far_corrected",
+      "epochs": 80,
+      "width": 384,
+      "separable": true,
+      "anchor": true,
+      "position_response": 1.0,
+      "seed": 12,
+      "extra_data": [
+        "data/near_rollouts",
+        "data/high_rollouts",
+        "data/far_rollouts",
+        "data/far_corrections"
+      ],
+      "gravity_checkpoint": "runs/gravity_verified_high/best.pt",
+      "invariant": true,
+      "regular_weight": 0.5,
+      "init": "runs/far_transfer/best.pt",
+      "focus_folders": [
+        "data/far_rollouts",
+        "data/far_corrections"
+      ],
+      "focus_weight": 2.0
+    },
+    "checkpoint_used": "best.pt"
+  }
+}

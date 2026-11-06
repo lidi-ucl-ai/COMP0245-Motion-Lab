@@ -1,0 +1,226 @@
+{
+  "jacobian": {
+    "label": "LJC · Learned-Jacobian Control",
+    "group": "Advanced models",
+    "description": "The arm MLP predicts a 3 × 7 Jacobian. An analytical feedback controller computes torque.",
+    "matched": "255/256",
+    "kind": "jacobian",
+    "variant": "full",
+    "checkpoint": "checkpoints/jacobian.pt",
+    "sha256": "0d2e5acb6836e5cd810b2944322ba2c095672f53071152d850b4c00378b47691"
+  },
+  "torque": {
+    "label": "SNTC · Structured Neural Torque Control",
+    "group": "Advanced models",
+    "description": "One policy automatically selects a regional network. Learned gravity and residual torques are combined with fixed feedback and torque limits.",
+    "matched": "252/256",
+    "kind": "torque",
+    "variant": "full",
+    "checkpoint": "checkpoints/torque.pt",
+    "sha256": "92691612a36164076d807f295480c33eb3001654a963513ea69d28cd99dfaf5a"
+  },
+  "m1": {
+    "label": "M1 · Basic Action MLP",
+    "group": "Baselines",
+    "description": "A feedforward policy predicts four wheel speeds and seven joint torques.",
+    "matched": "0/256",
+    "kind": "direct",
+    "variant": "full",
+    "checkpoint": "checkpoints/m1.pt",
+    "sha256": "9eec2af3f47f8622e5184f0b3617898aa1f58629640537fd2bc333e641627749"
+  },
+  "m2": {
+    "label": "M2 · Enhanced Action MLP",
+    "group": "Baselines",
+    "description": "The direct-action baseline with enhanced observation features.",
+    "matched": "0/256",
+    "kind": "direct",
+    "variant": "full",
+    "checkpoint": "checkpoints/m2.pt",
+    "sha256": "799f3a5e629ff7ac8542d608587cd09c96cd4238c01632ac151e456e62e359e1"
+  },
+  "pgru": {
+    "label": "P-GRU · Phase-Aware GRU",
+    "group": "Baselines",
+    "description": "A recurrent direct-action policy with phase supervision.",
+    "matched": "0/256",
+    "kind": "direct",
+    "variant": "full",
+    "checkpoint": "checkpoints/pgru.pt",
+    "sha256": "6fea2b3526e2ff99ea927b89f87ac90690aed8b16555f6609cf7d9bc2adffce5"
+  },
+  "memory_ik": {
+    "label": "Memory-IK",
+    "group": "Baselines",
+    "description": "Learned navigation and joint-motion prediction with feedback execution.",
+    "matched": "142/256",
+    "kind": "memory",
+    "variant": "full",
+    "checkpoint": "checkpoints/memory_ik.pt",
+    "sha256": "eb6c8623bcb6d935e560377c417ece0964e4ba1f40fbd761204778e197bd8946"
+  },
+  "raic_orig": {
+    "label": "RAIC · Original Reference-Action Policy",
+    "group": "Baselines",
+    "description": "Original supplied checkpoint and base policy, with arm reference integration disabled as in the main comparison.",
+    "matched": "76/256",
+    "kind": "raic_orig",
+    "variant": "arm_integrate_false",
+    "checkpoint": "checkpoints/raic_orig.pt",
+    "sha256": "55f1438bd24b0833b1a41b6f9e813d3d9cabd99c0d8b746c1f0ad31bce124939"
+  },
+  "reference": {
+    "label": "I-RAIC · Improved Reference-Action Policy",
+    "group": "Baselines",
+    "description": "Learned tree navigation and neural arm references executed by feedback control.",
+    "matched": "175/256",
+    "kind": "reference",
+    "variant": "full",
+    "checkpoint": "checkpoints/reference.pt",
+    "sha256": "bdce56bfe89b9b1edd31feee65b3b554d8667e7bc02b3263ef4e5144965b49e3"
+  },
+  "jac_rawangle": {
+    "label": "LJC · Raw Angle Input",
+    "group": "Ablations",
+    "description": "Separately trained checkpoint using the seven raw angles.",
+    "matched": null,
+    "kind": "jacobian",
+    "variant": "raw_angle_input",
+    "checkpoint": "checkpoints/jac_rawangle.pt",
+    "sha256": "65eadd3b99f551a25eb64c03ad2511efd6b05f2d40f05362ca412a8e37820ad5"
+  },
+  "jac_fixed_initial_jacobian": {
+    "label": "LJC · Fixed Initial Jacobian",
+    "group": "Ablations",
+    "description": "The Jacobian predicted at reset is held for the rollout.",
+    "matched": null,
+    "kind": "jacobian",
+    "variant": "fixed_initial_jacobian",
+    "checkpoint": "checkpoints/jacobian.pt",
+    "sha256": "0d2e5acb6836e5cd810b2944322ba2c095672f53071152d850b4c00378b47691"
+  },
+  "jac_no_compensation": {
+    "label": "LJC · No Compensation",
+    "group": "Ablations",
+    "description": "The original LJC checkpoint with compensation disabled.",
+    "matched": null,
+    "kind": "jacobian",
+    "variant": "no_compensation",
+    "checkpoint": "checkpoints/jacobian.pt",
+    "sha256": "0d2e5acb6836e5cd810b2944322ba2c095672f53071152d850b4c00378b47691"
+  },
+  "jac_no_high_servo": {
+    "label": "LJC · No High-Reach Servo",
+    "group": "Ablations",
+    "description": "The original LJC checkpoint without the high-reach servo overrides.",
+    "matched": null,
+    "kind": "jacobian",
+    "variant": "no_high_servo",
+    "checkpoint": "checkpoints/jacobian.pt",
+    "sha256": "0d2e5acb6836e5cd810b2944322ba2c095672f53071152d850b4c00378b47691"
+  },
+  "torque_no_anchor": {
+    "label": "SNTC · No Terminal Anchor",
+    "group": "Ablations",
+    "description": "Disables the terminal anchor in each available specialist.",
+    "matched": null,
+    "kind": "torque",
+    "variant": "no_anchor",
+    "checkpoint": "checkpoints/torque.pt",
+    "sha256": "92691612a36164076d807f295480c33eb3001654a963513ea69d28cd99dfaf5a"
+  },
+  "torque_no_velocity_prior": {
+    "label": "SNTC · No Velocity Prior",
+    "group": "Ablations",
+    "description": "Removes the fixed joint-velocity contribution.",
+    "matched": null,
+    "kind": "torque",
+    "variant": "no_velocity_prior",
+    "checkpoint": "checkpoints/torque.pt",
+    "sha256": "92691612a36164076d807f295480c33eb3001654a963513ea69d28cd99dfaf5a"
+  },
+  "torque_far_only": {
+    "label": "SNTC · Far Specialist Only",
+    "group": "Ablations",
+    "description": "Uses the far specialist for all targets.",
+    "matched": null,
+    "kind": "torque",
+    "variant": "far_specialist_only",
+    "checkpoint": "checkpoints/torque.pt",
+    "sha256": "92691612a36164076d807f295480c33eb3001654a963513ea69d28cd99dfaf5a"
+  },
+  "memory_sync_gate": {
+    "label": "Memory-IK · SyncGate",
+    "group": "Ablations",
+    "description": "Gates arm motion until the navigation phase permits it.",
+    "matched": null,
+    "kind": "memory",
+    "variant": "sync_gate",
+    "checkpoint": "checkpoints/memory_ik.pt",
+    "sha256": "eb6c8623bcb6d935e560377c417ece0964e4ba1f40fbd761204778e197bd8946"
+  },
+  "raic_integrated": {
+    "label": "RAIC · Arm Integration Enabled",
+    "group": "Ablations",
+    "description": "Uses the same original checkpoint with arm reference integration enabled.",
+    "matched": null,
+    "kind": "raic_orig",
+    "variant": "arm_integrate_true",
+    "checkpoint": "checkpoints/raic_orig.pt",
+    "sha256": "55f1438bd24b0833b1a41b6f9e813d3d9cabd99c0d8b746c1f0ad31bce124939"
+  },
+  "original_expert": {
+    "label": "Original Expert",
+    "group": "Expert controllers",
+    "description": "Course-provided sequential base and arm controller under the common simulator scoring rule.",
+    "matched": null,
+    "kind": "expert",
+    "variant": "full"
+  },
+  "improved_expert": {
+    "label": "Improved Expert",
+    "group": "Expert controllers",
+    "description": "Final project expert with reversible navigation, concurrent arm motion and high-reach settings.",
+    "matched": null,
+    "kind": "expert",
+    "variant": "full"
+  },
+  "parallel_expert": {
+    "label": "Improved Expert · Concurrent-Motion Study",
+    "group": "Earlier comparison",
+    "description": "Concurrent-motion expert used for the earlier paired completion-time study.",
+    "matched": null,
+    "kind": "expert",
+    "variant": "full"
+  },
+  "ljc_sequential": {
+    "label": "LJC Family · Original Expert Data",
+    "group": "Earlier comparison",
+    "description": "Earlier student checkpoint paired with the concurrent-motion student in the completion-time study.",
+    "matched": null,
+    "kind": "historical",
+    "variant": "sequential_student",
+    "checkpoint": "checkpoints/ljc_sequential.pt",
+    "sha256": "dc2b9b11c32e48455c1c4ebfa49ff60c7b40aa1a2ebe837d59bd97d336ed577f"
+  },
+  "ljc_parallel": {
+    "label": "LJC Family · Concurrent Expert Data",
+    "group": "Earlier comparison",
+    "description": "Earlier student checkpoint selected for the concurrent-motion completion-time study.",
+    "matched": null,
+    "kind": "historical",
+    "variant": "parallel_student",
+    "checkpoint": "checkpoints/ljc_parallel.pt",
+    "sha256": "a621e922e8662fc54853a17d20b5a3d59a950e70cb4469e9d0631f50974d62c3"
+  },
+  "ljc_pre_high": {
+    "label": "LJC Family · Before High-Reach Refinement",
+    "group": "Earlier comparison",
+    "description": "Pre-refinement student used as the earlier 92/128 high-reaching comparator.",
+    "matched": null,
+    "kind": "historical",
+    "variant": "pre_high_student",
+    "checkpoint": "checkpoints/ljc_pre_high.pt",
+    "sha256": "d132b5d3bcf53ee181a42d399e98e54e1e9592a0b27a050b922704ac1324d234"
+  }
+}

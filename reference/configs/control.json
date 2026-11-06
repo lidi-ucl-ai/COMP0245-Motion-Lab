@@ -1,0 +1,32 @@
+{
+  "reference": true,
+  "compensate": true,
+  "base_vmax": 0.28,
+  "yaw_max": 0.6,
+  "cart_kp": 1.8,
+  "cart_vmax": 0.25,
+  "joint_filter_s": 0.04,
+  "joint_accel": 3,
+  "wheel_accel": 8,
+  "torque_rate": 600,
+  "limit_base_compensation": true,
+  "high_reach": {
+    "inertia_matched_feedback": true,
+    "damping_min": 0.002,
+    "nav_arrive_m": 0.05,
+    "nav_settle_s": 0.2,
+    "cartesian_terminal_hold": true,
+    "nav_yaw_tolerance_rad": 0.025,
+    "joint_kp": [
+      60,
+      80,
+      40,
+      60,
+      20,
+      150,
+      10
+    ],
+    "reach_limit_m": 1.02,
+    "damping_max": 0.03
+  }
+}

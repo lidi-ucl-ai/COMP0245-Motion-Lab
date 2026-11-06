@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>COMP0245 Motion Lab</title>
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/layout.css">
+  <script type="importmap">{"imports":{"three":"/lib/three.module.js"}}</script>
+</head>
+<body data-view="simple">
+  <header>
+    <a class="brand" href="/"><span class="brand-icon">M<span>·</span></span><span>Motion Lab<small>COMP0245 / MOBILE MANIPULATION</small></span></a>
+    <div class="connection"><i id="connection-dot"></i><span id="connection">Connecting to simulator…</span><span class="local-tag">LOCAL</span></div>
+  </header>
+  <main>
+    <aside aria-label="Experiment setup">
+      <span class="section-label">01 / SETUP</span>
+      <h1>Compare controllers</h1>
+      <p class="intro">Run the report's policies on a shared mobile manipulation task.</p>
+      <label for="model">Model or controller</label>
+      <select id="model"></select>
+      <div class="model-summary"><strong id="model-score"></strong><p id="model-summary"></p></div>
+      <div class="field-title"><label>Target position</label><span>World coordinates · m</span></div>
+      <div class="input-grid" id="target-inputs"></div>
+      <label for="preset">Target presets</label>
+      <select id="preset">
+        <option value="">Choose an example…</option>
+        <option value="near">Near origin · (0, 0, 1.2)</option>
+        <option value="regular">Regular · (1.5, 0, 0.8)</option>
+        <option value="high">High · (1.5, 0, 1.4)</option>
+        <option value="far">Far · (4, 2, 0.8)</option>
+      </select>
+      <label for="duration">Simulation time limit (s)</label>
+      <input id="duration" type="number" min="0.5" max="600" step="0.5">
+      <details><summary>Initial robot state<span aria-hidden="true">+</span></summary>
+        <div class="field-title"><label>Base X, Y and yaw</label><span>m, m, rad</span></div>
+        <div class="input-grid" id="base-inputs"></div>
+        <div class="field-title"><label>Arm joint angles</label><span>rad</span></div>
+        <div class="joint-grid" id="arm-inputs"></div>
+      </details>
+      <button id="preview" class="secondary wide" disabled>Preview initial state</button>
+      <div class="action-grid">
+        <button id="start" class="primary" disabled>Run</button>
+        <button id="pause" class="secondary" disabled>Pause</button>
+        <button id="stop" class="danger" disabled>Stop</button>
+      </div>
+      <p id="message" role="status">Drag to orbit, scroll to zoom, right-drag to pan.</p>
+      <div class="aside-footer"><span class="small-dot"></span> Success requires end-effector error below 1 cm for 0.5 s.</div>
+    </aside>
+    <section class="workspace" aria-label="Simulation and results">
+      <div class="viewport-card" id="viewport-card">
+        <div class="viewport-top">
+          <div><span class="section-label">02 / LIVE SIMULATION</span><h2 id="active-network">Loading controller…</h2><span id="checkpoint" class="muted"></span></div>
+          <div class="view-actions"><span id="status" class="status">Connecting</span><button id="home">Reset camera</button><button id="fullscreen">Fullscreen</button></div>
+        </div>
+        <div id="viewport"><div id="loading">Loading robot meshes…</div>
+          <div class="legend"><span><i class="orange"></i>End effector</span><span><i class="teal"></i>Base</span><span><i class="red"></i>Target</span></div>
+        </div>
+        <div class="metrics">
+          <div><span>Simulation time</span><strong id="time">0.00<small>s</small></strong></div>
+          <div><span>End-effector error</span><strong id="error">—<small>mm</small></strong></div>
+          <div><span>Control phase</span><strong id="phase">—</strong></div>
+          <div><span>Playback speed</span><strong id="speed">—<small>×</small></strong></div>
+        </div>
+      </div>
+      <div class="view-mode-toolbar">
+        <div><span class="section-label">03 / RUN DATA</span><p id="view-mode-summary">3D view and run results</p></div>
+        <div class="view-mode-switch" role="group" aria-label="Telemetry view"><button id="view-simple" type="button" aria-pressed="true">Overview</button><button id="view-detailed" type="button" aria-pressed="false">Detailed</button></div>
+      </div>
+      <section class="monitor-section" aria-label="Live telemetry"><div class="monitor-grid" id="monitor-grid"></div></section>
+      <div class="bottom-grid">
+        <div class="chart-card"><div class="card-heading"><span class="section-label">GOAL CONVERGENCE</span><span>Error · m</span></div><canvas id="chart" aria-label="End-effector error over simulation time"></canvas><div class="chart-caption"><span>0 s</span><span>Dashed line · 1 cm threshold</span><span id="chart-end">30 s</span></div></div>
+        <div class="export-card"><span class="section-label">EXPORT</span><h3>Save this rollout</h3><p>Downloads become available when the run ends. Video uses your current camera angle.</p><button id="export" class="secondary wide" disabled>Render MP4</button><a id="download" class="download" hidden download>Download MP4</a><a id="json" class="data-link" hidden download>Download trajectory JSON</a></div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

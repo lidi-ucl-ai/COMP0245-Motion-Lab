@@ -1,0 +1,32 @@
+{
+  "models": [
+    "m1",
+    "m2",
+    "pgru",
+    "memory_ik"
+  ],
+  "seed": 0,
+  "selection": "Minimum episode-disjoint validation action loss; single fixed training budget; no new-test tuning",
+  "mlp": {
+    "epochs": 30,
+    "updates": 150,
+    "batch": 2048
+  },
+  "pgru": {
+    "epochs": 20,
+    "updates": 80,
+    "batch": 64,
+    "window": 128,
+    "burn_in": 32
+  },
+  "memory_ik": {
+    "epochs": 30,
+    "updates": 120,
+    "batch": 64,
+    "window": 128,
+    "burn_in": 32
+  },
+  "learning_rate": 0.0003,
+  "weight_decay": 1e-05,
+  "gradient_clip": 5
+}

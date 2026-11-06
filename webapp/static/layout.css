@@ -1,0 +1,36 @@
+body { --muted: #aebbc7; }
+main { grid-template-columns: minmax(295px, 330px) minmax(0, 1fr); align-items: start; }
+aside h1 { font-size: clamp(24px, 2.6vw, 34px); margin: 8px 0; letter-spacing: -.025em; }
+aside label[for="preset"], aside label[for="duration"] { margin-top: 13px; }
+aside select { font-size: 13px; }
+.model-summary { margin: 10px 0 14px; padding: 10px 12px; border: 1px solid #374758; border-radius: 8px; background: #24313e; }
+.model-summary strong { font-size: 12px; color: #cae6fe; }
+.model-summary p { margin: 4px 0 0; font-size: 12px; line-height: 1.45; color: #ced7e0; }
+.workspace { min-width: 0; display: grid; gap: 14px; }
+.viewport-top { align-items: center; gap: 14px; }
+.viewport-top h2 { margin: 4px 0; font-size: clamp(15px, 2vw, 22px); }
+#checkpoint { font: 11px ui-monospace, monospace; }
+.view-actions { align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+#viewport { height: clamp(330px, 55vh, 670px); }
+#viewport:fullscreen { height: 100vh; }
+#viewport-card { scroll-margin-top: 16px; }
+.view-mode-toolbar, .bottom-grid, .monitor-section { margin: 0; }
+.metrics strong { white-space: nowrap; }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid #b1dcff; outline-offset: 3px; }
+@media (min-width: 740px) and (max-width: 1020px) {
+  main { grid-template-columns: minmax(245px, 275px) minmax(0, 1fr); gap: 14px; padding-inline: 16px; }
+  aside { padding: 16px; }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .view-actions button { padding-inline: 7px; }
+  .bottom-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 739px) {
+  main { grid-template-columns: minmax(0, 1fr); }
+  #viewport { height: clamp(310px, 50vh, 530px); }
+}
+@media (max-width: 520px) {
+  .viewport-top { flex-wrap: wrap; }
+  .view-actions { justify-content: flex-start; }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bottom-grid { grid-template-columns: minmax(0, 1fr); }
+}

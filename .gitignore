@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.pixi/
+webapp/runs/
+webapp/cache/
+data/
+results/
+runs/
+checkpoints/navigation_s*/
+checkpoints/jacobian_s*/
+
+# Download the checkpoint archive from GitHub Releases.
+/checkpoints/*.pt
+/history/
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
