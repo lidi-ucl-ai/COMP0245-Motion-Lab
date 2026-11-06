@@ -36,7 +36,9 @@ Use `wsl/comp0245_control_v2_20261024/experiments/reference_bc_20261102/data` un
 
 ## Original RAIC
 
-`raic/original_source/` contains the six unchanged Python files from the teammate-supplied `RAIC.zip`. It includes the original collection, training and evaluation scripts. The ZIP contains neither demonstration trajectories nor a checkpoint. The report's frozen inference checkpoint is `checkpoints/raic_orig.pt`.
+`raic/original_source/` contains the original collection, training and evaluation scripts. Download [RAIC-data.zip](https://github.com/lidi-ucl-ai/COMP0245-Motion-Lab/releases/download/v1.0.0/RAIC-data.zip) and extract its `data/` folder under `raic/original_source/`. The report's frozen inference checkpoint is `checkpoints/raic_orig.pt`.
+
+`data/train/split.json` records 239 regular training, 30 validation and 30 held-out test episodes. The frozen checkpoint's configuration adds 60 training rollouts from each of `extreme_near`, `extreme_low`, `extreme_high` and `extreme_init`, for 479 training rollouts in total. The `special` folder holds target and reset configurations for diagnostics. We compared the stored 3D training and validation targets with the 256 shared benchmark goals and found zero matches within 1 micrometre.
 
 ```bash
 ROOT="$PWD"
